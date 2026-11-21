@@ -1,6 +1,6 @@
-# Arafat Onimisi Suleiman — Portfolio
+# Arafat Onimisi Suleiman | Portfolio
 
-A static, zero-build portfolio site for **Arafat Onimisi Suleiman** — engineer,
+A static, zero-build portfolio site for **Arafat Onimisi Suleiman**, engineer,
 entrepreneur and technical consultant. Plain HTML, CSS and vanilla JavaScript:
 no dependencies, no toolchain, no install step.
 
@@ -9,7 +9,7 @@ no dependencies, no toolchain, no install step.
 **Easiest:** open `index.html` directly in the browser (or use "Open with Live
 Server" in VSCodium).
 
-**Or serve it** (recommended — matches production paths for images and video):
+**Or serve it** (recommended, matches production paths for images and video):
 
 ```bash
 python3 -m http.server 8000
@@ -52,7 +52,7 @@ Live URL: `https://comradeonboard.github.io/arafat-onimisi-portfolio/`
 ## Media notes
 
 - Originals live in `media content/` and are **excluded from git** (see
-  `.gitignore`) — they're the source, not the published site.
+  `.gitignore`), they're the source, not the published site.
 - Photos were resized and re-compressed; videos transcoded to H.264 with audio
   stripped and posters extracted. Replace a file in `assets/video/` and update
   its poster in `assets/img/posters/` to change a clip.

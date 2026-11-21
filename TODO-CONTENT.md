@@ -16,24 +16,24 @@
 These lines are reasonable inference, not quotes from the brief. Have him approve
 or correct them:
 
-- [ ] `Eurofoam` card — "Commercial partnership within the foam and industrial
+- [ ] `Eurofoam` card: "Commercial partnership within the foam and industrial
       materials space." (only "business partner" was stated)
-- [ ] `Dean-Oil` card — sector tag "Energy"
-- [ ] `Block Manufacturing` — "Concrete block production and supply"
-- [ ] Hero line — "grounded in hands-on experience that began at twelve"
-- [ ] Approach section — the four principles are editorial framing
-- [ ] Stats — 2 disciplines, 5 ventures, 7 equipment categories (derived counts)
+- [ ] `Dean-Oil` card: sector tag "Energy"
+- [ ] `Block Manufacturing`: "Concrete block production and supply"
+- [ ] Hero line: "grounded in hands-on experience that began at twelve"
+- [ ] Approach section: the four principles are editorial framing
+- [ ] Stats: 2 disciplines, 5 ventures, 7 equipment categories (derived counts)
 
 ## Still missing
 
-- [ ] **A headshot** — the hero currently uses a workshop photo. A portrait
+- [ ] **A headshot**: the hero currently uses a workshop photo. A portrait
       would strengthen the About or hero section.
-- [ ] **More project detail** — specific machines built or supplied, clients
+- [ ] **More project detail**: specific machines built or supplied, clients
       (if shareable), quantities, locations, outcomes.
-- [ ] **Testimonials** — none provided. Add a section only with permission.
-- [ ] **Dates** — years for each business association, if he wants a timeline.
-- [ ] **A CV / PDF** — useful if he wants a download button.
-- [ ] **Custom domain** — optional; add a `CNAME` file when ready.
+- [ ] **Testimonials**: none provided. Add a section only with permission.
+- [ ] **Dates**: years for each business association, if he wants a timeline.
+- [ ] **A CV / PDF**: useful if he wants a download button.
+- [ ] **Custom domain**: optional; add a `CNAME` file when ready.
 
 ## Before going public
 

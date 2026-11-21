@@ -1,5 +1,5 @@
 /* =========================================================
-   Arafat Onimisi Suleiman — Portfolio interactions
+   Arafat Onimisi Suleiman / Portfolio interactions
    ========================================================= */
 (function () {
   "use strict";
@@ -22,7 +22,7 @@
   try {
     var saved = localStorage.getItem(THEME_KEY);
     if (saved === "light" || saved === "dark") applyTheme(saved);
-  } catch (e) { /* storage blocked — keep default */ }
+  } catch (e) { /* storage blocked, keep default */ }
 
   if (toggle) {
     toggle.addEventListener("click", function () {
