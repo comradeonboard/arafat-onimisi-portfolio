@@ -10,12 +10,13 @@
   /* ---------- Theme ---------- */
   var THEME_KEY = "aos-theme";
   var toggle = document.getElementById("theme-toggle");
+  var THEME_COLORS = { light: "#f5f2ec", dark: "#0f0e0c" };
 
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
-    if (toggle) toggle.setAttribute("aria-pressed", String(theme === "light"));
+    if (toggle) toggle.setAttribute("aria-pressed", String(theme === "dark"));
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f6f4ef" : "#0b0b0c");
+    if (meta) meta.setAttribute("content", THEME_COLORS[theme] || THEME_COLORS.light);
   }
 
   try {
@@ -25,7 +26,7 @@
 
   if (toggle) {
     toggle.addEventListener("click", function () {
-      var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       applyTheme(next);
       try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
     });
@@ -58,6 +59,10 @@
     if (e.key === "Escape") setMenu(false);
   });
 
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900) setMenu(false);
+  });
+
   /* ---------- Header stuck state ---------- */
   var header = document.getElementById("site-header");
   if (header) {
@@ -77,7 +82,7 @@
         var el = entry.target;
         var siblings = el.parentElement ? Array.prototype.slice.call(el.parentElement.children) : [];
         var index = Math.max(0, siblings.indexOf(el));
-        el.style.transitionDelay = Math.min(index * 70, 350) + "ms";
+        el.style.transitionDelay = Math.min(index * 60, 320) + "ms";
         el.classList.add("in");
         revealObserver.unobserve(el);
       });
@@ -121,7 +126,7 @@
         var el = entry.target;
         var target = parseInt(el.getAttribute("data-count"), 10) || 0;
         var start = performance.now();
-        var duration = 1100;
+        var duration = 1000;
 
         function tick(now) {
           var p = Math.min((now - start) / duration, 1);
@@ -137,12 +142,47 @@
     counters.forEach(function (el) { countObserver.observe(el); });
   }
 
+  /* ---------- Lazy ambient video ---------- */
+  var videos = Array.prototype.slice.call(document.querySelectorAll(".g-video"));
+
+  if (videos.length) {
+    if (reduceMotion) {
+      // Respect the preference: show the poster, load and play only on demand.
+      videos.forEach(function (v) {
+        v.controls = true;
+        v.addEventListener("click", function () {
+          if (!v.src && v.dataset.src) v.src = v.dataset.src;
+          if (v.paused) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      });
+    } else if ("IntersectionObserver" in window) {
+      var videoObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            if (!v.src && v.dataset.src) v.src = v.dataset.src;
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      videos.forEach(function (v) { videoObserver.observe(v); });
+    } else {
+      videos.forEach(function (v) {
+        if (!v.src && v.dataset.src) v.src = v.dataset.src;
+      });
+    }
+  }
+
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
-  /* ---------- Close menu when resizing up ---------- */
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 760) setMenu(false);
-  });
 })();

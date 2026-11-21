@@ -1,30 +1,43 @@
-# Content TODO — what's still placeholder
+# Content status
 
-Everything below is currently lorem-ish filler so the design can be judged.
-Search `TODO` in `index.html` to jump to each spot.
+## Confirmed from the client brief
 
-## Must replace
+- Name, roles, birthplace, location, professional positioning
+- Full biography and the "started at twelve" detail
+- Skills / areas of expertise
+- Business associations: Triumph Tech, Eurofoam, Global Care, Dean-Oil, Block Manufacturing
+- Business ventures and commercial activities
+- Machinery and equipment categories
+- Professional strengths and opportunities
+- Contact: both emails, WhatsApp number, LinkedIn URL
 
-- [ ] **Hero tagline** — the one-line pitch under the name
-- [ ] **Hero meta** — "Based in Lagos, Nigeria" and "Focus" (confirm or change)
-- [ ] **About bio** — three paragraphs + the five tags
-- [ ] **Stats** — years, projects, clients (`data-count` attributes)
-- [ ] **Work** — 4–6 real projects: title, category, one-line outcome, year, link
-- [ ] **Experience** — real roles, organisations, dates, descriptions
-- [ ] **Testimonials** — 2 quotes + names/roles (only with permission)
-- [ ] **Contact email** — currently `hello@example.com`
-- [ ] **Social links** — currently `#` placeholders (LinkedIn, GitHub, X, Dribbble…)
-- [ ] **Footer** — confirm wording
+## Written by us (worth confirming with him)
 
-## Assets to add in `assets/img/`
+These lines are reasonable inference, not quotes from the brief. Have him approve
+or correct them:
 
-- [ ] `portrait.jpg` — headshot (replace the `.portrait-ph` block in the hero)
-- [ ] Project thumbnails — 4–6 images, 1600×1000 ideal
-- [ ] `og-cover.jpg` — social preview, 1200×630
-- [ ] Optional: favicon PNG if you'd rather not use the inline SVG monogram
+- [ ] `Eurofoam` card — "Commercial partnership within the foam and industrial
+      materials space." (only "business partner" was stated)
+- [ ] `Dean-Oil` card — sector tag "Energy"
+- [ ] `Block Manufacturing` — "Concrete block production and supply"
+- [ ] Hero line — "grounded in hands-on experience that began at twelve"
+- [ ] Approach section — the four principles are editorial framing
+- [ ] Stats — 2 disciplines, 5 ventures, 7 equipment categories (derived counts)
 
-## Nice to have
+## Still missing
 
-- [ ] A custom domain (then add a `CNAME` file with the domain)
-- [ ] Real page title/meta description tuned for search
-- [ ] Analytics (privacy-friendly, e.g. Plausible) if wanted
+- [ ] **A headshot** — the hero currently uses a workshop photo. A portrait
+      would strengthen the About or hero section.
+- [ ] **More project detail** — specific machines built or supplied, clients
+      (if shareable), quantities, locations, outcomes.
+- [ ] **Testimonials** — none provided. Add a section only with permission.
+- [ ] **Dates** — years for each business association, if he wants a timeline.
+- [ ] **A CV / PDF** — useful if he wants a download button.
+- [ ] **Custom domain** — optional; add a `CNAME` file when ready.
+
+## Before going public
+
+- [ ] Confirm he's happy with both email addresses and the phone number being
+      public on the web.
+- [ ] Confirm the photos/videos are his to publish.
+- [ ] Ask whether he wants a contact form instead of raw email links.

@@ -1,65 +1,64 @@
 # Arafat Onimisi Suleiman — Portfolio
 
-A static, zero-build portfolio site. Plain HTML, CSS and vanilla JavaScript — no
-dependencies, no toolchain, no install step. Just open `index.html` in a browser.
+A static, zero-build portfolio site for **Arafat Onimisi Suleiman** — engineer,
+entrepreneur and technical consultant. Plain HTML, CSS and vanilla JavaScript:
+no dependencies, no toolchain, no install step.
 
 ## Preview locally
 
-**Easiest:** open `index.html` directly in your browser (or right-click →
-"Open with Live Server" in VSCodium).
+**Easiest:** open `index.html` directly in the browser (or use "Open with Live
+Server" in VSCodium).
 
-**Or serve it properly** (recommended, matches production URLs):
+**Or serve it** (recommended — matches production paths for images and video):
 
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000
+# visit http://localhost:8000
 ```
 
 ## Structure
 
 ```
-index.html                  all page content
-404.html                    custom not-found page
-assets/css/styles.css       design tokens + all styles
-assets/js/main.js           theme toggle, nav, scroll reveals, counters
-assets/img/                 put images here (portrait, project shots, og-cover.jpg)
+index.html                    all page content
+404.html                      custom not-found page
+assets/css/styles.css         design tokens + all styles
+assets/js/main.js             theme, nav, scroll reveals, lazy video
+assets/img/                   photos, social preview, video posters
+assets/video/                 compressed site-ready clips (2.6 MB total)
+media content/                original WhatsApp photos & videos (not published)
 .github/workflows/deploy.yml  auto-deploy to GitHub Pages on push to main
 ```
 
+## Sections
+
+| Section | Content |
+|---|---|
+| Hero | Name, roles, positioning line, workshop photo |
+| Profile | Biography, disciplines, key figures |
+| Expertise | Six capability areas + secondary skills |
+| Ventures | Block Manufacturing, Dean-Oil, Eurofoam, Triumph Tech, Global Care |
+| Equipment | Printing, agriculture, power transmission, construction + mixer rental |
+| In the field | Photo and video gallery from real work |
+| Approach | Working principles |
+| Contact | Two emails, WhatsApp, LinkedIn |
+
 ## Deploying (GitHub Pages)
 
-Every push to `main` triggers the workflow in `.github/workflows/deploy.yml`,
-which publishes the site. One-time setup in the repo:
-
-1. **Settings → Pages**
-2. Under **Build and deployment → Source**, choose **GitHub Actions**
-3. Push to `main` (or run the workflow manually from the **Actions** tab)
+Every push to `main` publishes via `.github/workflows/deploy.yml`. The repo is
+already configured with **Settings → Pages → Source: GitHub Actions**.
 
 Live URL: `https://comradeonboard.github.io/arafat-onimisi-portfolio/`
 
-## Editing content
+## Media notes
 
-Every section that still needs real content is marked with a comment:
+- Originals live in `media content/` and are **excluded from git** (see
+  `.gitignore`) — they're the source, not the published site.
+- Photos were resized and re-compressed; videos transcoded to H.264 with audio
+  stripped and posters extracted. Replace a file in `assets/video/` and update
+  its poster in `assets/img/posters/` to change a clip.
+- Videos load only when scrolled into view, and pause when off-screen.
 
-```html
-<!-- TODO(content): ... -->
-```
+## Adding a custom domain later
 
-Search for `TODO` across the project to find them all. See `TODO-CONTENT.md` for a
-checklist.
-
-## Adding images
-
-Drop files into `assets/img/` and reference them relatively:
-
-```html
-<img src="assets/img/portrait.jpg" alt="Arafat Onimisi Suleiman" />
-```
-
-For the social preview image, add `assets/img/og-cover.jpg` (1200×630 is ideal).
-
-## Notes
-
-- Dark theme by default, with a light-mode toggle (remembered per visitor).
-- Respects `prefers-reduced-motion` and works without JavaScript.
-- No external JS libraries. Fonts load from Google Fonts with system fallbacks.
+Add a `CNAME` file at the project root containing the domain, then point DNS at
+GitHub Pages. Update `og:image` to an absolute URL at that point.
