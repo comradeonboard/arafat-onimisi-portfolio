@@ -21,7 +21,7 @@ or correct them:
 - [ ] `Dean-Oil` card: sector tag "Energy"
 - [ ] `Block Manufacturing`: "Concrete block production and supply"
 - [ ] Hero line: "grounded in hands-on experience that began at twelve"
-- [ ] Approach section: the four principles are editorial framing
+- [ ] Approach section on `about.html`: the four principles are editorial framing
 - [ ] Stats: 2 disciplines, 5 ventures, 7 equipment categories (derived counts)
 
 ## Still missing

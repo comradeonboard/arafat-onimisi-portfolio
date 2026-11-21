@@ -93,29 +93,9 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ---------- Active nav link ---------- */
-  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
-  var navLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')) : [];
-
-  if ("IntersectionObserver" in window && sections.length && navLinks.length) {
-    var linkFor = {};
-    navLinks.forEach(function (link) {
-      linkFor[link.getAttribute("href").slice(1)] = link;
-    });
-
-    var sectionObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var link = linkFor[entry.target.id];
-        if (!link) return;
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (l) { l.classList.remove("is-active"); });
-          link.classList.add("is-active");
-        }
-      });
-    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
-
-    sections.forEach(function (s) { sectionObserver.observe(s); });
-  }
+  /* ---------- Active nav link ----------
+     Set per page with aria-current="page" in the markup, so no
+     scroll-spy is needed on a multi-page site. */
 
   /* ---------- Count-up stats ---------- */
   var counters = document.querySelectorAll("[data-count]");

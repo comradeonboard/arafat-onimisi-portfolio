@@ -203,8 +203,10 @@ button { font: inherit; color: inherit; }
   transition: color 0.2s, background-color 0.2s;
 }
 .nav a:hover { color: var(--text); background: var(--accent-soft); }
-.nav a.is-active { color: var(--text); }
-.nav a.is-active::after {
+.nav a.is-active,
+.nav a[aria-current="page"] { color: var(--text); }
+.nav a.is-active::after,
+.nav a[aria-current="page"]::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -525,6 +527,7 @@ button { font: inherit; color: inherit; }
   color: var(--accent);
   margin-bottom: 0.9rem;
 }
+.cap h2,
 .cap h3 { font-size: 1.18rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
 .cap p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
 
@@ -581,6 +584,7 @@ button { font: inherit; color: inherit; }
   gap: 0.75rem;
   margin-bottom: 0.7rem;
 }
+.venture h2,
 .venture h3 { font-size: 1.22rem; letter-spacing: -0.025em; }
 .chip {
   flex: none;
@@ -622,6 +626,7 @@ button { font: inherit; color: inherit; }
   border-color: transparent;
   justify-content: center;
 }
+.venture-cta h2,
 .venture-cta h3 { color: var(--bg); font-size: 1.3rem; }
 .venture-cta p { color: color-mix(in srgb, var(--bg) 72%, transparent); flex: 0; margin-top: 0.4rem; }
 .venture-cta:hover { transform: translateY(-3px); }
@@ -648,6 +653,7 @@ button { font: inherit; color: inherit; }
   overflow: hidden;
 }
 .equip-group { background: var(--surface); padding: 1.6rem 1.5rem 1.7rem; }
+.equip-group h2,
 .equip-group h3 {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -686,6 +692,7 @@ button { font: inherit; color: inherit; }
   background: var(--accent-soft);
   border-radius: var(--radius);
 }
+.callout-copy h2,
 .callout-copy h3 { font-size: clamp(1.15rem, 2.2vw, 1.45rem); margin-bottom: 0.35rem; }
 .callout-copy p:last-child { color: var(--muted); font-size: 0.9rem; max-width: 46ch; }
 .equip-callout .eyebrow { margin-bottom: 0.6rem; }
@@ -843,6 +850,138 @@ button { font: inherit; color: inherit; }
 }
 .reveal.in { opacity: 1; transform: none; }
 
+/* ---------- Page header (inner pages) ---------- */
+.page-head {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.page-title {
+  font-size: clamp(2.1rem, 5.2vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+.page-sub {
+  margin-top: 1.1rem;
+  color: var(--muted);
+  max-width: 62ch;
+  font-size: 1.02rem;
+}
+.page-head + .section { padding-top: clamp(2.25rem, 4.5vw, 3.5rem); }
+
+/* ---------- Home: index cards ---------- */
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1.1rem);
+}
+.index-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.7rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color 0.3s, transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.index-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.index-no {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+.index-card h2,
+.index-card h3 { font-size: 1.3rem; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+.index-card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
+.index-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.index-link span { color: var(--accent); transition: transform 0.25s var(--ease); }
+.index-card:hover .index-link span { transform: translateX(4px); }
+
+/* ---------- Home: gallery preview ---------- */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.6rem, 1.2vw, 0.9rem);
+}
+.preview-grid a {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.preview-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.preview-grid a:hover img { transform: scale(1.04); }
+.preview-more { margin-top: 1.25rem; }
+.about-copy .link-arrow { margin-top: 1.5rem; }
+
+/* ---------- Pager ---------- */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--line);
+}
+.pager-link { display: flex; flex-direction: column; gap: 0.15rem; }
+.pager-k {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.pager-v {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.pager-link:hover .pager-v { color: var(--accent); }
+.pager-next { text-align: right; margin-left: auto; }
+
+/* ---------- Contact page info ---------- */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.info-cell { background: var(--surface); padding: 1.4rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.info-k {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.info-v { font-size: 0.95rem; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .nav a { padding-inline: 0.6rem; font-size: 0.84rem; }
@@ -878,6 +1017,9 @@ button { font: inherit; color: inherit; }
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s, transform 0.25s var(--ease);
+    max-height: calc(100svh - 74px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .nav.is-open { opacity: 1; transform: none; pointer-events: auto; }
   .nav a {
@@ -901,6 +1043,7 @@ button { font: inherit; color: inherit; }
 
 @media (max-width: 640px) {
   .cap-grid, .venture-grid, .equip-grid, .approach-grid { grid-template-columns: 1fr; }
+  .index-grid, .preview-grid, .info-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .g-item { aspect-ratio: 4 / 3; }
   .g-feature { grid-column: auto; grid-row: auto; aspect-ratio: 3 / 4; }
