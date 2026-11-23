@@ -1070,6 +1070,11 @@ button { font: inherit; color: inherit; }
   .stats { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 360px) {
+  /* keep the full name on one line on the smallest phones */
+  .brand-text { font-size: 0.82rem; white-space: nowrap; }
+}
+
 /* ---------- Motion preferences ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
