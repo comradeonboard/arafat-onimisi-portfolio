@@ -36,7 +36,8 @@ index.html / about.html / ...  one file per page
 404.html                       custom not-found page
 assets/css/styles.css          design tokens and all styles
 assets/js/main.js              theme, mobile menu, scroll reveals, lazy video
-assets/img/                    photos, social preview, video posters
+assets/img/                    photos, portrait, social preview, video posters, favicons
+favicon.ico                    root favicon for browsers that request /favicon.ico
 assets/video/                  compressed site-ready clips (2.6 MB total)
 media content/                 original WhatsApp photos and videos (not published)
 sitemap.xml, robots.txt        search engine files

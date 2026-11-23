@@ -500,6 +500,29 @@ button { font: inherit; color: inherit; }
   gap: 0.6rem;
 }
 
+/* ---------- Profile card ---------- */
+.about-side { display: flex; flex-direction: column; gap: clamp(1rem, 2vw, 1.4rem); }
+.profile-card { margin: 0; }
+.profile-card img {
+  width: min(230px, 64%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.profile-card figcaption { display: flex; flex-direction: column; gap: 0.15rem; margin-top: 0.85rem; }
+.profile-name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+.profile-role {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
 /* ---------- Expertise ---------- */
 .cap-grid {
   display: grid;

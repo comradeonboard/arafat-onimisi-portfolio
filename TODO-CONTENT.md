@@ -26,8 +26,9 @@ or correct them:
 
 ## Still missing
 
-- [ ] **A headshot**: the hero currently uses a workshop photo. A portrait
-      would strengthen the About or hero section.
+- [ ] **A headshot**: the about page uses the abstract image the client
+      supplied (also the favicon). Replace it with a real portrait when he has
+      one; the circular layout is already in place.
 - [ ] **More project detail**: specific machines built or supplied, clients
       (if shareable), quantities, locations, outcomes.
 - [ ] **Testimonials**: none provided. Add a section only with permission.
