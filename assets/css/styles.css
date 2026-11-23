@@ -1002,6 +1002,8 @@ button { font: inherit; color: inherit; }
 @media (max-width: 900px) {
   .header-cta { display: none; }
   .menu-btn { display: grid; }
+  /* push theme + menu to the far right once the nav leaves the flow */
+  .header-actions { margin-left: auto; }
 
   .nav {
     position: fixed;
