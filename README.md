@@ -42,7 +42,8 @@ assets/video/                  compressed site-ready clips (2.6 MB total)
 media content/                 original WhatsApp photos and videos (not published)
 sitemap.xml, robots.txt        search engine files
 .github/workflows/deploy.yml   auto-deploy to GitHub Pages on push to main
-render.yaml                    optional Render Blueprint (static site)
+render.yaml                    optional Render Blueprint (Web Service)
+server.py                      tiny Python server used by the Render Web Service
 ```
 
 ## Editing
@@ -67,45 +68,55 @@ already configured with **Settings → Pages → Source: GitHub Actions**.
 
 Live URL: `https://comradeonboard.github.io/arafat-onimisi-portfolio/`
 
-## Deploying (Render)
+## Deploying (Render Web Service)
 
-This is a plain static site, so create a **Static Site** on Render, not a Web
-Service (a Web Service would need a server process). It is free and needs no
-environment variables or dependencies.
+The repo includes `server.py`, a tiny dependency-free Python server, so the site
+can run as a **Web Service** on Render. It listens on the port Render provides
+(`PORT`), serves the files from `dist/`, and uses the site's own `404.html` for
+unknown URLs.
 
 ### Option A: Dashboard (step by step)
 
 1. Push the site to GitHub (this repo is already on `main`).
 2. In the [Render Dashboard](https://dashboard.render.com/), click
-   **New → Static Site**.
+   **New → Web Service**.
 3. Connect your GitHub account and choose
    `comradeonboard/arafat-onimisi-portfolio`.
-4. Fill in the build settings:
+4. Fill in the service settings:
 
    | Field | Value |
    |---|---|
+   | Runtime | **Python 3** |
    | Branch | `main` |
    | Root Directory | leave empty (repo root) |
+   | Plan | Free (or paid, if you need it always awake) |
    | Build Command | `mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/` |
-   | Publish Directory | `dist` |
+   | Start Command | `python3 server.py` |
 
-   The build command only copies the public files into `dist/`; it does not
-   compile anything. No environment variables are required.
+   The build command only copies the public files into `dist/`; nothing is
+   compiled. No `requirements.txt`, packages or environment variables are
+   needed. `server.py` reads `PORT` from the environment automatically.
 
-5. Click **Create Static Site**. The first deploy takes a minute or two. Render
+5. Click **Create Web Service**. The first deploy takes a few minutes. Render
    gives you a URL like `https://arafat-onimisi-portfolio.onrender.com`.
 6. Future pushes to `main` deploy automatically. To deploy manually, use
-   **Manual Deploy → Deploy latest commit**. To turn auto-deploy off, change it
-   under **Settings → Build & Deploy**.
+   **Manual Deploy → Deploy latest commit**. Auto-deploy can be changed under
+   **Settings → Build & Deploy**.
 7. Optional custom domain: **Settings → Custom Domains → Add Custom Domain**.
    Follow the DNS instructions Render shows, then add the `www` version as well
    so it redirects. HTTPS certificates are issued automatically.
 
+> On the free plan, Render puts a Web Service to sleep after a period of
+> inactivity, so the first visit after a gap can take several seconds. Upgrade
+> the plan if that matters. (A Static Site would avoid this, but the site is
+> configured as a Web Service as requested.)
+
 ### Option B: Blueprint (one-time setup)
 
-`render.yaml` in the repo root describes the same static site. In Render, click
-**New → Blueprint**, connect this repo, and Render will pick up the settings
-from the file. Subsequent pushes to `main` redeploy as usual.
+`render.yaml` in the repo root describes the same Web Service (Python runtime,
+the build command above, and `python3 server.py` as the start command). In
+Render, click **New → Blueprint**, connect this repo, and Render picks up the
+settings from the file. Subsequent pushes to `main` redeploy as usual.
 
 ### After the first Render deploy
 

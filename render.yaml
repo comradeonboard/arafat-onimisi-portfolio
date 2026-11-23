@@ -1,12 +1,13 @@
-# Render Blueprint for the static portfolio site.
-# Dashboard alternative: New > Static Site, then use the same build command
-# and publish directory described in README.md.
+# Render Blueprint: Web Service for the static portfolio.
+# No dependencies: the build step copies the site into dist/, and server.py
+# serves that folder on the port Render provides. See README.md for details.
 services:
   - type: web
     name: arafat-onimisi-portfolio
-    runtime: static
+    runtime: python
+    plan: free
     repo: https://github.com/comradeonboard/arafat-onimisi-portfolio
     branch: main
     buildCommand: mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/
-    staticPublishPath: ./dist
+    startCommand: python3 server.py
     autoDeployTrigger: commit
