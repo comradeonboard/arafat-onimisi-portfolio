@@ -87,18 +87,11 @@ unknown URLs.
    | Plan | Free (or paid, if you need it always awake) |
    | Start Command | `python3 server.py` |
 
-   Build Command:
+   | Build Command | `mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/` |
 
-   ```bash
-   mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/ && if [ -n "$RENDER_EXTERNAL_URL" ]; then grep -rl 'https://comradeonboard.github.io/arafat-onimisi-portfolio' dist | xargs -r sed -i "s|https://comradeonboard.github.io/arafat-onimisi-portfolio|$RENDER_EXTERNAL_URL|g"; fi
-   ```
-
-   The build command copies the public files into `dist/` and rewrites the
-   absolute URLs in `sitemap.xml`, `robots.txt` and the social-preview meta tags
-   to your live Render URL. Render supplies `RENDER_EXTERNAL_URL` automatically;
-   no environment variables need to be set manually. Nothing is compiled, and
-   no `requirements.txt` or packages are needed. `server.py` reads `PORT` from
-   the environment automatically.
+   The build command only copies the public files into `dist/`; nothing is
+   compiled. No `requirements.txt`, packages or environment variables are
+   needed. `server.py` reads `PORT` from the environment automatically.
 
 5. Click **Create Web Service**. The first deploy takes a few minutes. Render
    gives you a URL like `https://arafat-onimisi-portfolio.onrender.com`.
@@ -123,16 +116,16 @@ settings from the file. Subsequent pushes to `main` redeploy as usual.
 
 ### URLs and the social preview
 
-The source files still contain the old GitHub Pages URL as a placeholder; the
-build command above replaces it with `RENDER_EXTERNAL_URL` on every Render
-deploy, so `sitemap.xml`, `robots.txt`, `og:image` and `twitter:image` point at
-the live site automatically. If you use a custom domain and want those tags to
-use it instead, replace `$RENDER_EXTERNAL_URL` in the build command with your
-domain. All other links in the site are relative, so nothing else changes.
+`sitemap.xml`, `robots.txt`, `og:url`, `og:image` and `twitter:image` use the
+live Render address `https://arafatonimisi.onrender.com`. If you later move to a
+custom domain, replace that prefix in those files and push. All other links in
+the site are relative, so nothing else changes.
 
 The social preview is the image the client supplied,
 `assets/img/portrait.jpg`, used directly by `og:image` and `twitter:image` on
-every content page. There is no separate cover or card image.
+every content page. There is no separate cover or card image. If a shared link
+still shows the old preview, social platforms are caching it; refresh the URL
+with Facebook Sharing Debugger or LinkedIn Post Inspector.
 
 ## Media notes
 

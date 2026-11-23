@@ -1,6 +1,6 @@
 # Render Blueprint: Web Service for the portfolio.
-# No dependencies: the build step copies the site into dist/ and swaps the
-# source GitHub Pages URLs for the live Render URL. server.py serves dist/.
+# No dependencies: the build step copies the site into dist/, and server.py
+# serves that folder on the port Render provides.
 services:
   - type: web
     name: arafat-onimisi-portfolio
@@ -8,6 +8,6 @@ services:
     plan: free
     repo: https://github.com/comradeonboard/arafat-onimisi-portfolio
     branch: main
-    buildCommand: mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/ && if [ -n "$RENDER_EXTERNAL_URL" ]; then grep -rl 'https://comradeonboard.github.io/arafat-onimisi-portfolio' dist | xargs -r sed -i "s|https://comradeonboard.github.io/arafat-onimisi-portfolio|$RENDER_EXTERNAL_URL|g"; fi
+    buildCommand: mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/
     startCommand: python3 server.py
     autoDeployTrigger: commit
