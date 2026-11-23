@@ -42,6 +42,7 @@ assets/video/                  compressed site-ready clips (2.6 MB total)
 media content/                 original WhatsApp photos and videos (not published)
 sitemap.xml, robots.txt        search engine files
 .github/workflows/deploy.yml   auto-deploy to GitHub Pages on push to main
+render.yaml                    optional Render Blueprint (static site)
 ```
 
 ## Editing
@@ -66,6 +67,56 @@ already configured with **Settings → Pages → Source: GitHub Actions**.
 
 Live URL: `https://comradeonboard.github.io/arafat-onimisi-portfolio/`
 
+## Deploying (Render)
+
+This is a plain static site, so create a **Static Site** on Render, not a Web
+Service (a Web Service would need a server process). It is free and needs no
+environment variables or dependencies.
+
+### Option A: Dashboard (step by step)
+
+1. Push the site to GitHub (this repo is already on `main`).
+2. In the [Render Dashboard](https://dashboard.render.com/), click
+   **New → Static Site**.
+3. Connect your GitHub account and choose
+   `comradeonboard/arafat-onimisi-portfolio`.
+4. Fill in the build settings:
+
+   | Field | Value |
+   |---|---|
+   | Branch | `main` |
+   | Root Directory | leave empty (repo root) |
+   | Build Command | `mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/` |
+   | Publish Directory | `dist` |
+
+   The build command only copies the public files into `dist/`; it does not
+   compile anything. No environment variables are required.
+
+5. Click **Create Static Site**. The first deploy takes a minute or two. Render
+   gives you a URL like `https://arafat-onimisi-portfolio.onrender.com`.
+6. Future pushes to `main` deploy automatically. To deploy manually, use
+   **Manual Deploy → Deploy latest commit**. To turn auto-deploy off, change it
+   under **Settings → Build & Deploy**.
+7. Optional custom domain: **Settings → Custom Domains → Add Custom Domain**.
+   Follow the DNS instructions Render shows, then add the `www` version as well
+   so it redirects. HTTPS certificates are issued automatically.
+
+### Option B: Blueprint (one-time setup)
+
+`render.yaml` in the repo root describes the same static site. In Render, click
+**New → Blueprint**, connect this repo, and Render will pick up the settings
+from the file. Subsequent pushes to `main` redeploy as usual.
+
+### After the first Render deploy
+
+`sitemap.xml` and `robots.txt` contain absolute GitHub Pages URLs. Replace the
+`https://comradeonboard.github.io/arafat-onimisi-portfolio` prefix in both files
+with your Render URL (or your custom domain), then push. All other links in the
+site are relative, so nothing else needs changing.
+
+The GitHub Pages workflow can keep running without affecting Render. If you no
+longer need it, delete `.github/workflows/deploy.yml` or change its trigger.
+
 ## Media notes
 
 - Originals live in `media content/` and are **excluded from git** (see
@@ -77,7 +128,7 @@ Live URL: `https://comradeonboard.github.io/arafat-onimisi-portfolio/`
 
 ## Notes
 
-- Dark theme by default, with a light-mode toggle remembered per visitor.
+- Light theme by default, with a dark-mode toggle remembered per visitor.
 - Responsive from 320px up: single-column layouts, stacked navigation, fluid type.
 - Respects `prefers-reduced-motion`; the site works without JavaScript.
 - No external JS libraries. Fonts load from Google Fonts with system fallbacks.

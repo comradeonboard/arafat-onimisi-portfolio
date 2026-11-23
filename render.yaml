@@ -1,0 +1,12 @@
+# Render Blueprint for the static portfolio site.
+# Dashboard alternative: New > Static Site, then use the same build command
+# and publish directory described in README.md.
+services:
+  - type: web
+    name: arafat-onimisi-portfolio
+    runtime: static
+    repo: https://github.com/comradeonboard/arafat-onimisi-portfolio
+    branch: main
+    buildCommand: mkdir -p dist && cp -r *.html *.xml *.txt favicon.ico assets dist/
+    staticPublishPath: ./dist
+    autoDeployTrigger: commit
