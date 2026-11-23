@@ -120,10 +120,15 @@ settings from the file. Subsequent pushes to `main` redeploy as usual.
 
 ### After the first Render deploy
 
-`sitemap.xml` and `robots.txt` contain absolute GitHub Pages URLs. Replace the
-`https://comradeonboard.github.io/arafat-onimisi-portfolio` prefix in both files
-with your Render URL (or your custom domain), then push. All other links in the
-site are relative, so nothing else needs changing.
+`sitemap.xml`, `robots.txt` and the `og:image` / `twitter:image` tags in the
+seven content pages contain absolute GitHub Pages URLs. Replace the
+`https://comradeonboard.github.io/arafat-onimisi-portfolio` prefix in those
+files with your Render URL (or your custom domain), then push. All other links
+in the site are relative, so nothing else needs changing.
+
+The social preview card is `assets/img/og-cover.jpg` (1200 × 630), built from the
+image the client supplied. It is used by `og:image` and `twitter:image` on every
+content page.
 
 The GitHub Pages workflow can keep running without affecting Render. If you no
 longer need it, delete `.github/workflows/deploy.yml` or change its trigger.
