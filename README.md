@@ -36,7 +36,7 @@ index.html / about.html / ...  one file per page
 404.html                       custom not-found page
 assets/css/styles.css          design tokens and all styles
 assets/js/main.js              theme, mobile menu, scroll reveals, lazy video
-assets/img/                    photos, portrait (also the social preview), video posters, favicons
+assets/img/                    photos, portrait, social preview crop, video posters, favicons
 favicon.ico                    root favicon for browsers that request /favicon.ico
 assets/video/                  compressed site-ready clips (2.6 MB total)
 media content/                 original WhatsApp photos and videos (not published)
@@ -121,11 +121,12 @@ live Render address `https://arafatonimisi.onrender.com`. If you later move to a
 custom domain, replace that prefix in those files and push. All other links in
 the site are relative, so nothing else changes.
 
-The social preview is the image the client supplied,
-`assets/img/portrait.jpg`, used directly by `og:image` and `twitter:image` on
-every content page. There is no separate cover or card image. If a shared link
-still shows the old preview, social platforms are caching it; refresh the URL
-with Facebook Sharing Debugger or LinkedIn Post Inspector.
+The social preview is `assets/img/og-cover.png`: just the image the client
+supplied, resized and centre-cropped to the 1200 × 630 size social platforms
+expect. There is no text or card design added. It is used by `og:image` and
+`twitter:image` on every content page, with `?v=2` to bust old caches. If a
+shared link still shows the old preview, refresh the URL with Facebook Sharing
+Debugger or LinkedIn Post Inspector.
 
 ## Media notes
 
